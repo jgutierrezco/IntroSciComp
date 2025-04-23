@@ -1,11 +1,17 @@
-fig.pdf : script.gp data.txt
-	gnuplot script.gp
+SOURCES := $(wildcard *.cpp)
+OBJECTS = $(SOURCES: .cpp = .o)
 
-sumupdown.x : sumupdown.cpp          # Se ejecuta solo la primera regla por defecto al escribir make
-	g++ sumupdown.cpp -o sumupdown.x
+fig.pdf : script.gp data.txt
+	gnuplot $<
+
+%.o : $.cpp          # Se ejecuta solo la primera regla por defecto al escribir make
+	g++ $< -c
+
+sumupdown.x : $(OBJECTS)
+	g++ $^ -o $@
 
 data.txt : sumupdown.x               # Si se quiere ejecutar, se especifica el target después de make. Como tiene que recurrir a todas las dependencias, corre todo.
-	./sumupdown.x > data.txt
+	./$< > $@
 
 clean:                               # Sin target. Elimina todos los archivos creados según especificado
-	rm -f *.x a.out *.x *.pdf
+	rm -f *.x a.out *.txt *.pdf *.o
