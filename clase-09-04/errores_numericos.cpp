@@ -7,10 +7,7 @@ int main(void)
 
     for(int a = 1; a > 0 ; a*=2){
         std::cout << a << std::endl;
-    }
-
-
-    
+    }   
     
     return 0;
 }
