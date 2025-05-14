@@ -1,0 +1,14 @@
+Cambios:
+
+--ANTES DE COMPILAR--
+    Al  final de la línea 63 faltaban ;
+    En main:
+        -Los int ii y jj se declaran dos veces.
+    En la función baz: 
+        -El argumento del if estaba como x=0, no como comparativo.
+        -Se crea el double v que termina siendo el mismo double x.
+        -Tal vez quería retornar la raiz cuadrada de un número si es distinto de cero.
+
+--DESDE gdb--
+    En main se llama a la función foo con valores que implicarían división por cero. Se le agrega la condición de que si los argumentos son cero muestre un error.
+
